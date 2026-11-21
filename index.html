@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrandProof AI v3.1 — Every claim checked. Every flag proven.</title>
+  
+  <!-- Google Fonts: Instrument Serif, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            alabaster: '#FAF8F5',
+            porcelain: '#FFFFFF',
+            obsidian: '#0E1218',
+            obsidianSoft: '#151B24',
+            champagne: '#D4AF37',
+            champagneLight: '#F3E5AB',
+            emeraldDeep: '#065F46',
+            emeraldMint: '#10B981',
+          },
+          boxShadow: {
+            'luxury': '0 20px 50px -15px rgba(14, 18, 24, 0.07), 0 1px 3px rgba(14, 18, 24, 0.04)',
+            'luxury-hover': '0 28px 60px -15px rgba(14, 18, 24, 0.12), 0 2px 6px rgba(14, 18, 24, 0.06)',
+            'obsidian-glow': '0 14px 34px -8px rgba(14, 18, 24, 0.38), inset 0 1px 0 0 rgba(212, 175, 55, 0.35)',
+            'emerald-glow': '0 14px 34px -8px rgba(6, 95, 70, 0.42), inset 0 1px 0 0 rgba(167, 243, 208, 0.35)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF8F5;
+      color: #0E1218;
+      background-image: 
+        linear-gradient(to right, rgba(14, 18, 24, 0.032) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(14, 18, 24, 0.032) 1px, transparent 1px),
+        radial-gradient(at 12% 0%, rgba(212, 175, 55, 0.09) 0px, transparent 48%),
+        radial-gradient(at 88% 8%, rgba(16, 185, 129, 0.08) 0px, transparent 48%);
+      background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%;
+      background-attachment: fixed;
+    }
+
+    /* Frosted Velvet & Porcelain Surfaces */
+    .velvet-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(14, 18, 24, 0.08);
+      box-shadow: 0 20px 50px -15px rgba(14, 18, 24, 0.065), 0 1px 3px rgba(14, 18, 24, 0.03);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease;
+    }
+
+    /* Full-Viewport Continuous Ambient Canvas */
+    #ambient-governance-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Bespoke Luxury Obsidian Button with Champagne Rim & Shimmer */
+    .btn-luxury-obsidian {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #161C26 0%, #0B0E14 100%);
+      color: #FAF8F5;
+      border: 1px solid rgba(212, 175, 55, 0.38);
+      box-shadow: 0 14px 30px -8px rgba(14, 18, 24, 0.42), inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-luxury-obsidian::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.24), transparent);
+      transform: skewX(-22deg);
+      transition: left 0.65s ease;
+    }
+    .btn-luxury-obsidian:hover::after {
+      left: 160%;
+    }
+    .btn-luxury-obsidian:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212, 175, 55, 0.72);
+      box-shadow: 0 20px 38px -10px rgba(14, 18, 24, 0.5), inset 0 1px 0 0 rgba(212, 175, 55, 0.3);
+    }
+    .btn-luxury-obsidian:active {
+      transform: translateY(0);
+    }
+
+    /* Bespoke Glass-Etched Secondary Button */
+    .btn-luxury-glass {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(12px);
+      color: #0E1218;
+      border: 1px solid rgba(14, 18, 24, 0.16);
+      box-shadow: 0 6px 20px -6px rgba(14, 18, 24, 0.08);
+      transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-luxury-glass:hover {
+      background: #0E1218;
+      color: #FAF8F5;
+      border-color: #0E1218;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -8px rgba(14, 18, 24, 0.28);
+    }
+
+    /* Bespoke Emerald Seal Action Button */
+    .btn-luxury-emerald {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #065F46 0%, #047857 55%, #059669 100%);
+      color: #FFFFFF;
+      border: 1px solid rgba(167, 243, 208, 0.35);
+      box-shadow: 0 14px 30px -8px rgba(6, 95, 70, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+      transition: all 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-luxury-emerald:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 38px -10px rgba(6, 95, 70, 0.55), inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+    }
+
+    /* Metallic Rotating Embossed Seal */
+    @keyframes slowRotate {
+      0% { transform: rotate(-8deg); }
+      50% { transform: rotate(-2deg) scale(1.03); }
+      100% { transform: rotate(-8deg); }
+    }
+    .metallic-seal {
+      background: radial-gradient(circle at 30% 30%, #10B981, #065F46 65%, #022C22 100%);
+      box-shadow: 0 16px 32px -8px rgba(6, 95, 70, 0.55), inset 0 0 0 2px rgba(212, 175, 55, 0.55);
+      animation: slowRotate 6s ease-in-out infinite;
+    }
+
+    /* Editorial Highlighted Claim Callouts */
+    .claim-flag {
+      background: rgba(244, 63, 94, 0.11);
+      border-bottom: 2px solid #E11D48;
+      padding: 1px 6px;
+      border-radius: 5px;
+      font-weight: 600;
+      color: #9F1239;
+      transition: background 0.15s ease;
+    }
+    .claim-flag:hover {
+      background: rgba(244, 63, 94, 0.2);
+    }
+    .claim-flag-med {
+      background: rgba(217, 119, 6, 0.12);
+      border-bottom: 2px solid #D97706;
+      padding: 1px 6px;
+      border-radius: 5px;
+      font-weight: 600;
+      color: #92400E;
+    }
+
+    /* Hide scrollbar on mobile pill strip */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Ambient Floating Aurora Orbs */
+    @keyframes floatOrb {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(28px, -24px, 0) scale(1.08); }
+    }
+    @keyframes floatOrbReverse {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(-26px, 22px, 0) scale(0.95); }
+    }
+    .ambient-orb-1 { animation: floatOrb 12s ease-in-out infinite; }
+    .ambient-orb-2 { animation: floatOrbReverse 15s ease-in-out infinite; }
+
+    /* Continuous Laser Vision Scanline */
+    @keyframes laserSweep {
+      0% { top: 4%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 94%; opacity: 0; }
+    }
+    .laser-beam {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, #10B981 20%, #FDE047 50%, #10B981 80%, transparent 100%);
+      box-shadow: 0 0 18px 3px rgba(16, 185, 129, 0.75), 0 0 32px 6px rgba(212, 175, 55, 0.45);
+      animation: laserSweep 3.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      pointer-events: none;
+      z-index: 30;
+    }
+
+    /* Soundwave Rings */
+    @keyframes wavePulse {
+      0% { transform: scale(0.88); opacity: 0.7; }
+      100% { transform: scale(1.38); opacity: 0; }
+    }
+    .soundwave-ring {
+      animation: wavePulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .soundwave-ring-delay {
+      animation: wavePulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) 1.4s infinite;
+    }
+
+    /* Scroll Reveal Motion */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(24px) scale(0.985);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Interactive 3D Perspective Tilt */
+    .tilt-stage {
+      transform-style: preserve-3d;
+      transition: transform 0.18s ease-out, box-shadow 0.25s ease;
+    }
+
+    /* SVG Pipeline Pulse */
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -24; }
+    }
+    .pipeline-flow {
+      stroke-dasharray: 6 6;
+      animation: dashFlow 1s linear infinite;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-200/70 selection:text-obsidian relative overflow-x-hidden">
+
+  <!-- Full-Viewport Continuous 60fps Ambient Governance Constellation & Silk Wave Canvas -->
+  <canvas id="ambient-governance-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient Floating Aurora Orbs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="ambient-orb-1 absolute -top-24 left-[8%] w-[420px] h-[420px] rounded-full bg-amber-300/20 blur-[110px]"></div>
+    <div class="ambient-orb-2 absolute top-[35%] right-[4%] w-[460px] h-[460px] rounded-full bg-emerald-400/15 blur-[120px]"></div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- FLOATING ARCHITECTURAL GLASS NAVIGATION BAR                           -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-4 z-50 px-3 sm:px-6">
+    <nav class="max-w-7xl mx-auto velvet-card rounded-full px-3.5 sm:px-6 py-2.5 flex items-center justify-between gap-3">
+      
+      <!-- Brand Monogram & Wordmark -->
+      <button onclick="switchTab('overview')" class="flex items-center gap-3 pl-1 group text-left focus:outline-none">
+        <div class="w-10 h-10 rounded-full bg-obsidian border border-champagne/50 flex items-center justify-center text-champagneLight shadow-md group-hover:scale-105 transition-transform">
+          <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-serif text-2xl tracking-tight text-obsidian leading-none">BrandProof <span class="italic text-emerald-700">AI</span></span>
+            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-obsidian text-champagneLight border border-champagne/30">v3.1</span>
+          </div>
+          <p class="hidden sm:block text-[10px] font-medium tracking-wide uppercase text-slate-500 mt-0.5">ABC Electronics · Governance Suite</p>
+        </div>
+      </button>
+
+      <!-- Desktop Segmented Navigation Pills -->
+      <div class="hidden lg:flex items-center bg-alabaster/95 p-1 rounded-full border border-slate-200/90 gap-1">
+        <button data-tab="overview" onclick="switchTab('overview')" class="nav-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-obsidian text-white shadow-sm">Launchpad</button>
+        <button data-tab="sandbox" onclick="switchTab('sandbox')" class="nav-pill px-4 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-obsidian transition-all">Live Sandbox</button>
+        <button data-tab="poster" onclick="switchTab('poster')" class="nav-pill px-4 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-obsidian transition-all">Poster Vision</button>
+        <button data-tab="memory" onclick="switchTab('memory')" class="nav-pill px-4 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-obsidian transition-all">Impact Simulator</button>
+        <button data-tab="accuracy" onclick="switchTab('accuracy')" class="nav-pill px-4 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-obsidian transition-all">Benchmarks &amp; Team</button>
+      </div>
+
+      <!-- Right Status Pill & Luxury CTA -->
+      <div class="flex items-center gap-2.5">
+        <a href="https://brandproof-ai-ddlp.onrender.com/" target="_blank" class="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white hover:bg-alabaster border border-slate-200/90 text-slate-800 font-semibold text-xs shadow-sm transition">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Live Render App</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400"></i>
+        </a>
+        <button onclick="switchTab('sandbox')" class="btn-luxury-obsidian px-4 sm:px-5 py-2.5 rounded-full font-semibold text-xs sm:text-sm flex items-center gap-2 group">
+          <span>Enter Sandbox</span>
+          <i data-lucide="sparkles" class="w-4 h-4 text-champagneLight group-hover:rotate-12 transition-transform"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Scrollable Pill Strip -->
+    <div class="lg:hidden max-w-7xl mx-auto mt-2 overflow-x-auto pb-1 no-scrollbar">
+      <div class="inline-flex items-center velvet-card p-1 rounded-full gap-1 min-w-max">
+        <button data-tab="overview" onclick="switchTab('overview')" class="nav-pill-m px-3.5 py-1.5 rounded-full text-xs font-semibold bg-obsidian text-white">Launchpad</button>
+        <button data-tab="sandbox" onclick="switchTab('sandbox')" class="nav-pill-m px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-600">Live Sandbox</button>
+        <button data-tab="poster" onclick="switchTab('poster')" class="nav-pill-m px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-600">Poster Vision</button>
+        <button data-tab="memory" onclick="switchTab('memory')" class="nav-pill-m px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-600">Impact Simulator</button>
+        <button data-tab="accuracy" onclick="switchTab('accuracy')" class="nav-pill-m px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-600">Benchmarks &amp; Team</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONTENT                                                          -->
+  <!-- ===================================================================== -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-24">
+
+    <!-- =================================================================== -->
+    <!-- TAB 0: VISUAL PRODUCT LAUNCHPAD & INSTANT CAPTION ENGINE            -->
+    <!-- =================================================================== -->
+    <section id="view-overview" class="space-y-12">
+
+      <!-- Asymmetric Visual Hero Stage -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-stretch">
+        
+        <!-- Left: Luxury Editorial Statement (6 Cols) -->
+        <div class="lg:col-span-6 velvet-card rounded-[2.25rem] p-8 sm:p-11 flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -top-28 -right-28 w-72 h-72 bg-champagne/15 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="space-y-6 relative">
+            <div class="inline-flex flex-wrap items-center gap-2 px-4 py-1.5 rounded-full bg-alabaster border border-slate-200/90 text-slate-800 text-xs font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping"></span>
+              <span>Inkloom AI · Intelligent Brand-Governance Platform</span>
+            </div>
+
+            <h1 class="font-serif text-5xl sm:text-6xl xl:text-[64px] text-obsidian leading-[1.03] tracking-tight">
+              Catch the <span class="italic text-rose-700 underline decoration-champagne/80 decoration-2 underline-offset-8">wrong price</span> before your customers do.
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+              <strong class="text-obsidian font-semibold">Every claim checked. Every flag proven.</strong> BrandProof audits English, Hindi, and Hinglish copy, posters, and documents against approved brand rules &amp; logos—then seals human approval in a <span class="font-mono text-xs bg-obsidian text-champagneLight px-2.5 py-0.5 rounded-full">SHA-256 Certificate</span>.
+            </p>
+          </div>
+
+          <!-- Dual Bespoke Luxury Buttons & Direct Links -->
+          <div class="pt-9 space-y-5">
+            <div class="flex flex-wrap items-center gap-3.5">
+              <button onclick="switchTab('sandbox')" class="btn-luxury-obsidian px-7 py-4 rounded-full font-semibold text-sm sm:text-base flex items-center gap-3 group">
+                <i data-lucide="play" class="w-4 h-4 text-champagneLight fill-champagneLight"></i>
+                <span>Launch Interactive Demo</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 group-hover:text-white transition-all"></i>
+              </button>
+
+              <a href="https://brandproof-ai-ddlp.onrender.com/" target="_blank" class="btn-luxury-glass px-6 py-4 rounded-full font-semibold text-sm sm:text-base flex items-center gap-2">
+                <span>Live App (Render)</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+
+            <!-- Live Deployment & Source Links -->
+            <div class="pt-3 border-t border-slate-200/70 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500">
+              <span>Sandbox: <strong class="text-obsidian">ABC Electronics</strong> (first load ~50s wake-up)</span>
+              <span class="text-slate-300">|</span>
+              <a href="https://brandproof-ai-ddlp.onrender.com/docs" target="_blank" class="text-obsidian font-semibold hover:text-emerald-700 transition inline-flex items-center gap-1">
+                OpenAPI Docs <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
+              <span class="text-slate-300">|</span>
+              <a href="https://github.com/sanjaykumarpathak640-png/brandproof-ai" target="_blank" class="text-obsidian font-semibold hover:text-emerald-700 transition inline-flex items-center gap-1">
+                GitHub Repo <i data-lucide="github" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 3D Interactive Studio Product + Laser Vision Scanner Stage (6 Cols) -->
+        <div class="lg:col-span-6 tilt-stage bg-obsidian text-white rounded-[2.25rem] p-6 sm:p-8 shadow-2xl border border-champagne/30 flex flex-col justify-between relative overflow-hidden" onmousemove="tiltElement(event, this)" onmouseleave="resetTilt(this)">
+          
+          <!-- Animated Laser Vision Scanner Beam -->
+          <div class="laser-beam"></div>
+
+          <!-- Top Telemetry Header -->
+          <div class="flex items-center justify-between gap-2 pb-4 border-b border-white/10 relative z-10">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-xs font-mono text-slate-300">LIVE VISION + RULE SCANNER</span>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-300 font-mono text-xs font-semibold">
+              100 / 100 RISK CAUGHT
+            </span>
+          </div>
+
+          <!-- Center Visual Product + Claim Inspection Showcase -->
+          <div class="my-5 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center relative z-10">
+            
+            <!-- Bespoke Studio Product Illustration: SoundPods Pro -->
+            <div class="sm:col-span-5 bg-gradient-to-b from-slate-800/90 to-obsidianSoft rounded-3xl p-4 border border-champagne/25 flex flex-col items-center justify-center relative overflow-hidden aspect-square">
+              <div class="soundwave-ring absolute w-32 h-32 rounded-full border border-champagne/30"></div>
+              <div class="soundwave-ring-delay absolute w-32 h-32 rounded-full border border-emerald-400/25"></div>
+              
+              <!-- High-Detail SVG Acoustic Earbuds Artwork -->
+              <svg viewBox="0 0 180 180" class="w-36 h-36 relative z-10 drop-shadow-[0_14px_22px_rgba(0,0,0,0.65)]">
+                <defs>
+                  <linearGradient id="podShell" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#F8FAFC"/>
+                    <stop offset="55%" stop-color="#CBD5E1"/>
+                    <stop offset="100%" stop-color="#64748B"/>
+                  </linearGradient>
+                  <linearGradient id="goldTrim" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FDE68A"/>
+                    <stop offset="50%" stop-color="#D4AF37"/>
+                    <stop offset="100%" stop-color="#92400E"/>
+                  </linearGradient>
+                  <radialGradient id="earTip" cx="35%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#334155"/>
+                    <stop offset="100%" stop-color="#090D16"/>
+                  </radialGradient>
+                </defs>
+                <!-- Left Earbud -->
+                <g transform="translate(22, 24) rotate(-10 45 65)">
+                  <rect x="34" y="56" width="16" height="66" rx="8" fill="url(#podShell)"/>
+                  <rect x="39" y="64" width="5" height="44" rx="2.5" fill="url(#goldTrim)"/>
+                  <ellipse cx="42" cy="46" rx="22" ry="26" fill="url(#podShell)"/>
+                  <ellipse cx="26" cy="44" rx="11" ry="16" fill="url(#earTip)"/>
+                  <circle cx="46" cy="36" r="4" fill="#0F172A"/>
+                </g>
+                <!-- Right Earbud -->
+                <g transform="translate(76, 32) rotate(12 45 65)">
+                  <rect x="36" y="56" width="16" height="66" rx="8" fill="url(#podShell)"/>
+                  <rect x="42" y="64" width="5" height="44" rx="2.5" fill="url(#goldTrim)"/>
+                  <ellipse cx="44" cy="46" rx="22" ry="26" fill="url(#podShell)"/>
+                  <ellipse cx="60" cy="44" rx="11" ry="16" fill="url(#earTip)"/>
+                  <circle cx="40" cy="36" r="4" fill="#0F172A"/>
+                </g>
+              </svg>
+
+              <div class="mt-1 text-center relative z-10">
+                <div class="text-[10px] font-mono uppercase tracking-widest text-champagneLight">ABC ELECTRONICS</div>
+                <div class="text-xs font-bold text-white">SoundPods Pro</div>
+              </div>
+            </div>
+
+            <!-- Live Annotated Ad Card -->
+            <div class="sm:col-span-7 bg-porcelain text-obsidian rounded-2xl p-5 shadow-xl relative border border-white space-y-3">
+              <p class="text-sm sm:text-[15px] font-medium leading-relaxed text-slate-900">
+                ABC Electronics – <span class="claim-flag-med">India's No. 1!</span> Buy SoundPods Pro for just <span class="claim-flag">₹7,000 ①</span>. Get <span class="claim-flag">50% OFF ②</span> with <span class="claim-flag">lifetime warranty ③</span>!
+              </p>
+
+              <div class="pt-2.5 border-t border-slate-200/90 space-y-2 text-[11px] text-slate-600">
+                <div class="flex items-center gap-2">
+                  <span class="w-4 h-4 rounded-full bg-rose-600 text-white font-mono font-bold text-[10px] flex items-center justify-center shrink-0">1</span>
+                  <span>Approved price: <strong class="text-obsidian">₹10,000</strong> (Price List Oct 2026)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-4 h-4 rounded-full bg-rose-600 text-white font-mono font-bold text-[10px] flex items-center justify-center shrink-0">2</span>
+                  <span>Max discount: <strong class="text-obsidian">20%</strong> (Festive Offer Policy §2)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-4 h-4 rounded-full bg-rose-600 text-white font-mono font-bold text-[10px] flex items-center justify-center shrink-0">3</span>
+                  <span>Warranty: <strong class="text-obsidian">2 years</strong> (Brand Book p.6)</span>
+                </div>
+              </div>
+
+              <!-- Metallic Embossed SHA-256 Seal -->
+              <div class="metallic-seal absolute -bottom-5 -right-3 w-16 h-16 rounded-full flex flex-col items-center justify-center text-white text-center p-1 select-none">
+                <i data-lucide="badge-check" class="w-5 h-5 text-champagneLight"></i>
+                <span class="text-[7px] font-mono font-bold uppercase tracking-widest leading-tight text-champagneLight">SHA-256<br>SEALED</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Animated KPI Counters Strip -->
+          <div class="grid grid-cols-3 gap-3 pt-2 relative z-10">
+            <div class="bg-obsidianSoft/90 rounded-2xl p-3 border border-white/10 text-center">
+              <div class="font-serif text-2xl sm:text-3xl text-champagneLight count-up" data-target="266">266</div>
+              <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400">Benchmark Samples</div>
+            </div>
+            <div class="bg-obsidianSoft/90 rounded-2xl p-3 border border-white/10 text-center">
+              <div class="font-serif text-2xl sm:text-3xl text-emerald-400"><span class="count-up" data-target="100">100</span>%</div>
+              <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400">Rules Precision</div>
+            </div>
+            <div class="bg-obsidianSoft/90 rounded-2xl p-3 border border-white/10 text-center">
+              <div class="font-serif text-2xl sm:text-3xl text-white count-up" data-target="35">35</div>
+              <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400">Automated Tests</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSTANT "TRY A CAPTION" MULTILINGUAL CHECKER -->
+      <div id="try-caption-section" class="reveal-up velvet-card rounded-[2.25rem] p-7 sm:p-9">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200/80">
+          <div>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-emerald-700 font-semibold">Live Multilingual Rule Engine · English · Hinglish · हिंदी</span>
+            <h2 class="font-serif text-3xl sm:text-4xl text-obsidian mt-1">Test any ad caption in real time</h2>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="setQuickSample('hinglish')" class="px-3.5 py-1.5 rounded-full bg-alabaster hover:bg-obsidian hover:text-white border border-slate-200 text-xs font-semibold transition">Hinglish ("saat hazaar")</button>
+            <button onclick="setQuickSample('hindi')" class="px-3.5 py-1.5 rounded-full bg-alabaster hover:bg-obsidian hover:text-white border border-slate-200 text-xs font-semibold transition">हिंदी ("सात हज़ार")</button>
+            <button onclick="setQuickSample('risky')" class="px-3.5 py-1.5 rounded-full bg-alabaster hover:bg-obsidian hover:text-white border border-slate-200 text-xs font-semibold transition">Risky English Ad</button>
+            <button onclick="setQuickSample('clean')" class="px-3.5 py-1.5 rounded-full bg-alabaster hover:bg-obsidian hover:text-white border border-slate-200 text-xs font-semibold transition">Clean Copy</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 pt-6 items-start">
+          <div class="lg:col-span-7 space-y-4">
+            <textarea id="quick-caption-input" rows="3" oninput="runQuickCaptionCheck()" class="w-full rounded-2xl border border-slate-300/90 focus:border-obsidian focus:ring-0 p-4 text-sm sm:text-base font-medium text-obsidian bg-porcelain shadow-inner transition" placeholder="Paste or type ad copy...">Diwali Dhamaka! SoundPods Pro sirf saat hazaar rupaye mein, aadhe daam par! Saath mein aajeevan warranty. Jaldi karo, aakhri mauka!</textarea>
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <button onclick="runQuickCaptionCheck()" class="btn-luxury-obsidian px-6 py-3 rounded-full font-semibold text-xs sm:text-sm flex items-center gap-2">
+                <i data-lucide="scan-search" class="w-4 h-4 text-champagneLight"></i>
+                <span>Verify Claims Instantly</span>
+              </button>
+              <button onclick="transferToFullSandbox()" class="text-xs font-semibold text-slate-700 hover:text-emerald-700 underline underline-offset-4 transition">
+                Fix &amp; Mint Certificate in Sandbox →
+              </button>
+            </div>
+          </div>
+
+          <div id="quick-caption-results" class="lg:col-span-5 bg-alabaster/90 rounded-2xl p-5 border border-slate-200/90 space-y-3">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- VISUAL FEATURE SHOWCASE CARDS (WITH CUSTOM SVG ARTWORK) -->
+      <div class="reveal-up grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div onclick="switchTab('poster')" class="cursor-pointer group velvet-card rounded-[2rem] p-6 space-y-4 hover:border-champagne/70">
+          <div class="h-36 rounded-2xl bg-gradient-to-br from-rose-950 via-obsidian to-amber-950 p-4 flex items-center justify-between relative overflow-hidden">
+            <div class="space-y-1 z-10">
+              <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-mono text-[10px]">VISION + FFT MATCH</span>
+              <div class="font-serif text-2xl text-white">Poster Vision Studio</div>
+              <div class="text-xs text-slate-300">WCAG contrast &amp; pixel logo check</div>
+            </div>
+            <svg viewBox="0 0 80 80" class="w-20 h-20 shrink-0 group-hover:scale-110 transition-transform">
+              <rect x="8" y="8" width="64" height="64" rx="12" fill="none" stroke="#D4AF37" stroke-width="2" stroke-dasharray="6 4"/>
+              <rect x="18" y="20" width="44" height="14" rx="4" fill="#F43F5E" fill-opacity="0.3" stroke="#FB7185" stroke-width="1.5"/>
+              <circle cx="40" cy="52" r="10" fill="#10B981" fill-opacity="0.3" stroke="#34D399" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="flex items-center justify-between text-xs font-semibold text-obsidian">
+            <span>Inspect interactive poster boxes</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-700 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+
+        <div onclick="switchTab('memory')" class="cursor-pointer group velvet-card rounded-[2rem] p-6 space-y-4 hover:border-champagne/70">
+          <div class="h-36 rounded-2xl bg-gradient-to-br from-emerald-950 via-obsidian to-slate-900 p-4 flex items-center justify-between relative overflow-hidden">
+            <div class="space-y-1 z-10">
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 font-mono text-[10px]">ZERO SIDE-EFFECTS</span>
+              <div class="font-serif text-2xl text-white">Impact Simulator</div>
+              <div class="text-xs text-slate-300">Preview rule changes before saving</div>
+            </div>
+            <svg viewBox="0 0 80 80" class="w-20 h-20 shrink-0 group-hover:scale-110 transition-transform">
+              <path d="M12 58 L28 42 L44 48 L68 20" fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="28" cy="42" r="4" fill="#D4AF37"/>
+              <circle cx="44" cy="48" r="4" fill="#F43F5E"/>
+              <circle cx="68" cy="20" r="5" fill="#10B981"/>
+            </svg>
+          </div>
+          <div class="flex items-center justify-between text-xs font-semibold text-obsidian">
+            <span>Simulate 20% → 10% discount impact</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-700 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+
+        <div onclick="switchTab('accuracy')" class="cursor-pointer group velvet-card rounded-[2rem] p-6 space-y-4 hover:border-champagne/70">
+          <div class="h-36 rounded-2xl bg-gradient-to-br from-slate-900 via-obsidian to-indigo-950 p-4 flex items-center justify-between relative overflow-hidden">
+            <div class="space-y-1 z-10">
+              <span class="px-2.5 py-0.5 rounded-full bg-champagne/20 text-champagneLight font-mono text-[10px]">266 LABELLED SAMPLES</span>
+              <div class="font-serif text-2xl text-white">98.7% Hybrid Recall</div>
+              <div class="text-xs text-slate-300">Rules + Gemini 3.8 Flash Verifier</div>
+            </div>
+            <svg viewBox="0 0 80 80" class="w-20 h-20 shrink-0 group-hover:scale-110 transition-transform">
+              <circle cx="40" cy="40" r="28" fill="none" stroke="#334155" stroke-width="6"/>
+              <circle cx="40" cy="40" r="28" fill="none" stroke="#D4AF37" stroke-width="6" stroke-dasharray="175" stroke-dashoffset="18" stroke-linecap="round"/>
+              <text x="40" y="44" text-anchor="middle" fill="#FFFFFF" font-size="13" font-family="monospace" font-weight="bold">F1 .97</text>
+            </svg>
+          </div>
+          <div class="flex items-center justify-between text-xs font-semibold text-obsidian">
+            <span>Explore benchmark &amp; IIT Patna team</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 text-emerald-700 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: LIVE CHECK & APPROVAL WORKFLOW (CHECK & QUEUE)               -->
+    <!-- =================================================================== -->
+    <section id="view-sandbox" class="hidden space-y-6">
+      
+      <!-- Workspace Header & Role Switcher -->
+      <div class="velvet-card rounded-3xl p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <span class="px-3 py-1 rounded-full bg-obsidian text-champagneLight font-mono text-[11px] font-semibold border border-champagne/40">PRIVATE SANDBOX</span>
+          <div>
+            <h2 class="font-serif text-2xl sm:text-3xl text-obsidian leading-tight">ABC Electronics · Content &amp; Approval Queue</h2>
+            <p class="text-xs text-slate-500">Test multilingual checks, apply fixes with Purpose Guard, and issue a verified Proof Certificate</p>
+          </div>
+        </div>
+
+        <!-- Role Switcher Pills -->
+        <div class="flex flex-wrap items-center gap-1.5 bg-alabaster p-1.5 rounded-full border border-slate-200/90">
+          <span class="text-[11px] font-mono uppercase text-slate-500 pl-3 pr-1">Acting as:</span>
+          <button onclick="setActiveRole('Creator')" id="role-pill-Creator" class="role-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-obsidian text-white shadow-sm transition">Creator — Riya</button>
+          <button onclick="setActiveRole('Compliance')" id="role-pill-Compliance" class="role-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-obsidian transition">Compliance</button>
+          <button onclick="setActiveRole('Reviewer')" id="role-pill-Reviewer" class="role-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-obsidian transition">Reviewer</button>
+          <button onclick="setActiveRole('Brand Admin')" id="role-pill-Brand Admin" class="role-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-obsidian transition">Brand Admin</button>
+        </div>
+      </div>
+
+      <!-- 4-Stage Governance Stepper with Animated SVG Energy Line -->
+      <div class="velvet-card rounded-3xl px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3 sm:gap-4 overflow-x-auto text-xs font-semibold">
+          <div id="wf-step-1" class="flex items-center gap-2 text-emerald-700">
+            <span class="w-6 h-6 rounded-full bg-emerald-700 text-white font-mono text-[11px] flex items-center justify-center">1</span>
+            <span>Draft &amp; Fix</span>
+          </div>
+          <svg class="w-8 h-3 shrink-0" viewBox="0 0 32 12"><line x1="0" y1="6" x2="32" y2="6" stroke="#10B981" stroke-width="2" class="pipeline-flow"/></svg>
+          <div id="wf-step-2" class="flex items-center gap-2 text-slate-400">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-mono text-[11px] flex items-center justify-center">2</span>
+            <span>Compliance</span>
+          </div>
+          <svg class="w-8 h-3 shrink-0" viewBox="0 0 32 12"><line x1="0" y1="6" x2="32" y2="6" stroke="#94A3B8" stroke-width="2" class="pipeline-flow"/></svg>
+          <div id="wf-step-3" class="flex items-center gap-2 text-slate-400">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-mono text-[11px] flex items-center justify-center">3</span>
+            <span>Reviewer</span>
+          </div>
+          <svg class="w-8 h-3 shrink-0" viewBox="0 0 32 12"><line x1="0" y1="6" x2="32" y2="6" stroke="#D4AF37" stroke-width="2" class="pipeline-flow"/></svg>
+          <div id="wf-step-4" class="flex items-center gap-2 text-slate-400">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-mono text-[11px] flex items-center justify-center">4</span>
+            <span>Certified</span>
+          </div>
+        </div>
+        <div id="wf-next-banner" class="text-xs font-medium px-4 py-1.5 rounded-full bg-alabaster text-obsidian border border-slate-200">
+          Next step: Run check, apply fixes, and submit as Creator.
+        </div>
+      </div>
+
+      <!-- Main Split Workspace -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Column: Editor & Inline Proof Highlights (6 Cols) -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="velvet-card rounded-[2rem] p-6 sm:p-7 space-y-5">
+            <!-- Sample Presets Bar -->
+            <div class="space-y-2">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500">Load Benchmark Sample Preset</span>
+              <div class="flex flex-wrap gap-1.5">
+                <button onclick="loadSandboxPreset('risky')" class="px-3 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200/80 text-xs font-semibold transition">Risky AI ad</button>
+                <button onclick="loadSandboxPreset('hinglish')" class="px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200/80 text-xs font-semibold transition">Hinglish WhatsApp</button>
+                <button onclick="loadSandboxPreset('hindi')" class="px-3 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200/80 text-xs font-semibold transition">हिंदी Copy</button>
+                <button onclick="loadSandboxPreset('outdated')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition">Outdated facts</button>
+                <button onclick="loadSandboxPreset('confidential')" class="px-3 py-1.5 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-900 border border-purple-200/80 text-xs font-semibold transition">Confidential leak</button>
+                <button onclick="loadSandboxPreset('clean')" class="px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/80 text-xs font-semibold transition">Clean copy</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Draft Title</label>
+                <input id="editor-title" type="text" value="Hinglish WhatsApp Promo" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm font-semibold bg-porcelain">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Publishing Channel</label>
+                <select id="editor-channel" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm font-semibold bg-porcelain">
+                  <option>WhatsApp</option>
+                  <option>Instagram</option>
+                  <option>Retail Standee</option>
+                  <option>Email Campaign</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Creator's Goal <span class="font-normal text-slate-400">(Purpose Guard protects this intent)</span></label>
+              <input id="editor-goal" type="text" value="Drive Diwali sales for SoundPods Pro" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm bg-porcelain">
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="text-xs font-semibold text-slate-700">Content (English, Hindi, or Hinglish)</label>
+                <span id="editor-char-count" class="text-[11px] font-mono text-slate-400">131 / 20000</span>
+              </div>
+              <textarea id="editor-content" rows="4" oninput="runSandboxAnalysis()" class="w-full rounded-2xl border border-slate-300 focus:border-obsidian focus:ring-0 p-4 text-sm sm:text-base font-medium bg-porcelain leading-relaxed">Diwali Dhamaka! SoundPods Pro sirf saat hazaar rupaye mein, aadhe daam par! Saath mein aajeevan warranty. Jaldi karo, aakhri mauka!</textarea>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input id="chk-ai-tool" type="checkbox" checked class="rounded text-obsidian focus:ring-0">
+                <span>Draft written with an AI tool (recorded on certificate)</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input id="chk-confidential" type="checkbox" class="rounded text-obsidian focus:ring-0">
+                <span>Confidential mode (send nothing to AI)</span>
+              </label>
+            </div>
+
+            <!-- Luxury Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <button onclick="runSandboxAnalysis(true)" class="btn-luxury-obsidian px-6 py-3 rounded-full font-semibold text-xs sm:text-sm flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4 text-champagneLight"></i>
+                <span>Run BrandProof Check</span>
+              </button>
+              <button onclick="applySuggestedFixes()" class="btn-luxury-emerald px-6 py-3 rounded-full font-semibold text-xs sm:text-sm flex items-center gap-2">
+                <i data-lucide="wand-2" class="w-4 h-4"></i>
+                <span>Apply Suggested Fixes</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Inline Evidence & Purpose Guard Card -->
+          <div class="velvet-card rounded-[2rem] p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-mono uppercase tracking-wider font-semibold text-slate-500">Highlighted Draft &amp; Evidence Callouts</h3>
+              <span class="text-xs font-mono text-slate-400">Readability: Flesch 57.9</span>
+            </div>
+            <div id="editor-highlighted-preview" class="p-4 rounded-2xl bg-alabaster border border-slate-200/90 text-sm sm:text-base leading-relaxed font-medium text-obsidian">
+              <!-- Populated by JS -->
+            </div>
+            <div id="purpose-guard-banner" class="hidden p-4 rounded-2xl bg-emerald-50/90 border border-emerald-200 flex items-center gap-3 text-xs text-emerald-950">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-700 shrink-0"></i>
+              <div>
+                <strong>Purpose Guard Verified:</strong> Product (<em>SoundPods Pro</em>), Offer, and Call-to-Action survived automated fixes intact.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Risk Gauge, Findings & Proof Certificate Vault (6 Cols) -->
+        <div class="lg:col-span-6 space-y-6">
+          
+          <!-- Circular Risk Assessment Card -->
+          <div class="velvet-card rounded-[2rem] p-6">
+            <div class="flex flex-col sm:flex-row items-center gap-6">
+              <div class="relative w-28 h-28 flex items-center justify-center shrink-0">
+                <svg class="w-28 h-28 -rotate-90" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" stroke="#E2E8F0" stroke-width="8" fill="none" />
+                  <circle id="gauge-circle" cx="50" cy="50" r="42" stroke="#E11D48" stroke-width="8" fill="none" stroke-dasharray="264" stroke-dashoffset="18" stroke-linecap="round" class="transition-all duration-500" />
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                  <span id="gauge-number" class="font-serif text-4xl text-obsidian leading-none">93</span>
+                  <span id="gauge-tag" class="text-[9px] font-mono font-bold text-rose-600 mt-1">HIGH RISK</span>
+                </div>
+              </div>
+
+              <div class="flex-1 w-full space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-obsidian text-sm">Risk Breakdown · Brand Memory v1</span>
+                  <span id="gauge-counts" class="text-xs font-mono font-semibold text-slate-500">3 HIGH · 0 MED · 2 REV</span>
+                </div>
+                <div class="space-y-2 text-xs">
+                  <div>
+                    <div class="flex justify-between font-medium mb-0.5"><span>Pricing &amp; Discounts</span><span id="score-pricing" class="font-mono">+60</span></div>
+                    <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden"><div id="bar-pricing" class="h-full bg-rose-600 rounded-full transition-all duration-300" style="width: 100%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between font-medium mb-0.5"><span>Warranty &amp; Guarantees</span><span id="score-warranty" class="font-mono">+25</span></div>
+                    <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden"><div id="bar-warranty" class="h-full bg-amber-500 rounded-full transition-all duration-300" style="width: 100%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between font-medium mb-0.5"><span>Brand Voice &amp; Disclaimers</span><span id="score-voice" class="font-mono">+8</span></div>
+                    <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden"><div id="bar-voice" class="h-full bg-obsidian rounded-full transition-all duration-300" style="width: 45%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Findings List -->
+          <div class="velvet-card rounded-[2rem] p-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-obsidian text-base">Proven Findings (<span id="findings-total">0</span>)</h3>
+              <span class="text-[11px] font-mono text-slate-400">Deterministic Rules + Evidence Verifier</span>
+            </div>
+            <div id="findings-container" class="space-y-2.5 max-h-[300px] overflow-y-auto pr-1">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Obsidian Governance Sign-Off & Certificate Card -->
+          <div class="bg-obsidian text-white rounded-[2rem] p-6 sm:p-7 shadow-2xl border border-champagne/25 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-champagne">Four-Eyes Governance Workflow</span>
+                <h3 class="font-serif text-2xl text-white mt-0.5" id="wf-card-title">Actions — Creator (Riya Sharma)</h3>
+              </div>
+              <span id="wf-status-badge" class="px-3 py-1 rounded-full bg-white/10 text-champagneLight font-mono text-xs font-semibold">DRAFT</span>
+            </div>
+
+            <p id="wf-card-desc" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Apply suggested fixes to clear high-severity issues, then submit to the review queue.
+            </p>
+
+            <div id="wf-buttons-row" class="flex flex-wrap gap-3">
+              <!-- Populated by JS -->
+            </div>
+
+            <!-- Issued SHA-256 Proof Certificate Vault -->
+            <div id="certificate-vault" class="hidden mt-4 rounded-2xl bg-gradient-to-br from-emerald-950/90 to-obsidianSoft border border-champagne/40 p-5 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 flex items-center justify-center">
+                    <i data-lucide="award" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-champagneLight text-sm">Proof Certificate #09 · ISSUED</div>
+                    <div class="text-[11px] text-slate-400">ABC Electronics · Brand Memory v1 · gemini-3.8-flash</div>
+                  </div>
+                </div>
+                <button onclick="copyCertificateHash()" class="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] flex items-center gap-1.5 transition">
+                  <i data-lucide="copy" class="w-3 h-3 text-champagneLight"></i>
+                  <span>Copy SHA-256</span>
+                </button>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1 font-mono bg-obsidian/90 p-3.5 rounded-xl border border-white/10">
+                <div>Creator: Riya Sharma &lt;riya@abcelectronics.demo&gt;</div>
+                <div>Approved by: Kanika Reviewer &lt;kanika@abcelectronics.demo&gt; (Four-Eyes Verified)</div>
+                <div id="cert-hash-text" class="text-emerald-400 break-all">SHA-256: 829326a829f4c190e841b77d30658b9a1096ab1a15e76af5</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: POSTER VISION INSPECTOR (IMPROVEMENT 1)                      -->
+    <!-- =================================================================== -->
+    <section id="view-poster" class="hidden space-y-6">
+      <div class="velvet-card rounded-[2.25rem] p-6 sm:p-9">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200/80">
+          <div>
+            <span class="px-3 py-1 rounded-full bg-obsidian text-champagneLight font-mono text-[11px] font-semibold">IMPROVEMENT 1 · VISION + PIXEL MATCH</span>
+            <h2 class="font-serif text-3xl sm:text-4xl text-obsidian mt-2">Poster Vision &amp; Logo Inspector</h2>
+            <p class="text-sm text-slate-600 mt-1">Reads every text line with 0–1000 bounding boxes, measures per-box WCAG contrast via NumPy 6-color reduction, checks ΔE palette distance, and FFT pixel-matches the approved logo.</p>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <button onclick="togglePosterBoxes()" id="btn-poster-boxes" class="btn-luxury-glass px-5 py-2.5 rounded-full font-semibold text-xs flex items-center gap-2">
+              <i data-lucide="scan" class="w-4 h-4 text-emerald-700"></i>
+              <span>Bounding Boxes: ON</span>
+            </button>
+            <button onclick="togglePosterState()" id="btn-poster-toggle" class="btn-luxury-emerald px-5 py-2.5 rounded-full font-semibold text-xs flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              <span>Toggle On-Brand Poster</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-7 items-start">
+          
+          <!-- Left: Illustrated 1080x1080 Interactive Poster Canvas (5 Cols) -->
+          <div class="lg:col-span-5 space-y-4">
+            <div id="poster-artwork" class="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-obsidian aspect-square flex flex-col justify-between transition-all duration-500" style="background: linear-gradient(180deg, #D62828 0%, #D62828 64%, #FACF23 64%, #FACF23 100%);">
+              
+              <!-- Animated Laser Vision Scanline -->
+              <div class="laser-beam"></div>
+
+              <!-- Decorative Festive Diyas / Geometric Sparkles SVG -->
+              <svg viewBox="0 0 300 60" class="w-full h-10 opacity-45 pointer-events-none">
+                <path d="M0 10 Q75 45 150 10 T300 10" fill="none" stroke="#FDE68A" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <circle cx="75" cy="27" r="4" fill="#FDE68A"/>
+                <circle cx="150" cy="10" r="5" fill="#FFFFFF"/>
+                <circle cx="225" cy="27" r="4" fill="#FDE68A"/>
+              </svg>
+
+              <div class="px-6 text-center space-y-2 relative z-10">
+                <div class="relative inline-block px-3 py-1">
+                  <p id="p-line-1" class="text-2xl sm:text-3xl font-black tracking-tight uppercase" style="color: #F472B6;">DIWALI MEGA SALE</p>
+                  <div class="p-bbox absolute inset-0 border-2 border-amber-300 bg-amber-400/15 rounded-lg pointer-events-none">
+                    <span class="absolute -top-5 left-0 bg-amber-400 text-obsidian font-mono text-[10px] font-bold px-1.5 py-0.5 rounded">#4 R-IMG-01 · 1.52:1</span>
+                  </div>
+                </div>
+
+                <div class="relative inline-block px-4 py-1">
+                  <p id="p-line-2" class="text-4xl sm:text-5xl font-black text-white tracking-tight">50% OFF</p>
+                  <div class="p-bbox absolute inset-0 border-2 border-rose-200 bg-rose-500/20 rounded-lg pointer-events-none">
+                    <span class="absolute -top-5 left-0 bg-rose-600 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded">#6 R-DSC-01 · MAX 20%</span>
+                  </div>
+                </div>
+
+                <!-- Product & Logo Verification Zone -->
+                <div class="pt-1 flex items-center justify-center gap-4">
+                  <!-- Mini SoundPods Visual -->
+                  <svg viewBox="0 0 80 80" class="w-16 h-16 drop-shadow-lg">
+                    <circle cx="40" cy="40" r="36" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                    <rect x="26" y="34" width="8" height="26" rx="4" fill="#FFFFFF"/>
+                    <circle cx="30" cy="30" r="10" fill="#FFFFFF"/>
+                    <rect x="46" y="34" width="8" height="26" rx="4" fill="#E2E8F0"/>
+                    <circle cx="50" cy="30" r="10" fill="#E2E8F0"/>
+                  </svg>
+
+                  <div id="p-logo-box" class="w-20 h-20 rounded-full bg-obsidian flex flex-col items-center justify-center text-center p-2 border-2 border-dashed border-rose-400">
+                    <span class="text-[9px] font-mono text-rose-300 font-bold leading-tight">LOGO<br>MISSING</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-5 text-center space-y-2 relative z-10">
+                <div class="relative inline-block px-3 py-0.5">
+                  <p id="p-line-3" class="text-lg sm:text-xl font-extrabold text-obsidian">SoundPods Pro – just ₹7,000</p>
+                  <div class="p-bbox absolute inset-0 border-2 border-rose-700 bg-rose-600/15 rounded-lg pointer-events-none">
+                    <span class="absolute -top-5 left-0 bg-rose-700 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded">#7 R-PRC-01 · ₹10,000</span>
+                  </div>
+                </div>
+                <div class="relative inline-block px-3 py-0.5">
+                  <p id="p-line-4" class="text-xs sm:text-sm font-bold text-slate-900">India's No. 1 earbuds · Lifetime warranty</p>
+                  <div class="p-bbox absolute inset-0 border-2 border-rose-700 bg-rose-600/15 rounded-lg pointer-events-none">
+                    <span class="absolute -bottom-5 left-0 bg-rose-700 text-white font-mono text-[10px] font-bold px-1.5 py-0.5 rounded">#9 R-WAR-01 · 2 YRS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-obsidian text-white rounded-2xl p-4 flex items-center justify-between text-xs border border-champagne/20">
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 font-mono">Logo FFT Match:</span>
+                <span id="p-logo-verdict" class="px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 font-mono font-semibold">✕ LOGO NOT FOUND (0.19 &lt; 0.82)</span>
+              </div>
+              <span class="font-mono text-slate-400">1080×1080px</span>
+            </div>
+          </div>
+
+          <!-- Right: WCAG Contrast Table & Brand Palette ΔE (7 Cols) -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="bg-porcelain rounded-3xl p-6 border border-slate-200/90 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-obsidian text-base">Per-Line Text &amp; WCAG Contrast Audit</h3>
+                <span class="text-xs font-mono text-emerald-700 font-semibold">WCAG AA ≥ 3.0:1</span>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs sm:text-sm">
+                  <thead>
+                    <tr class="border-b border-slate-200 text-slate-400 font-mono text-[11px]">
+                      <th class="py-2">TEXT LINE IN IMAGE</th>
+                      <th class="py-2">CONTRAST</th>
+                      <th class="py-2">RULE FINDING</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 font-medium">
+                    <tr>
+                      <td class="py-3 font-bold text-obsidian">DIWALI MEGA SALE</td>
+                      <td class="py-3 font-mono font-bold text-rose-600">1.52:1 (FAIL)</td>
+                      <td class="py-3"><span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold">R-IMG-01 Low Contrast</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 font-bold text-obsidian">50% OFF</td>
+                      <td class="py-3 font-mono font-bold text-emerald-700">5.01:1 (PASS)</td>
+                      <td class="py-3"><span class="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-900 text-xs font-semibold">R-DSC-01 Max 20%</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 font-bold text-obsidian">SoundPods Pro – just ₹7,000</td>
+                      <td class="py-3 font-mono font-bold text-emerald-700">9.13:1 (PASS)</td>
+                      <td class="py-3"><span class="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-900 text-xs font-semibold">R-PRC-01 Price ₹10,000</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 font-bold text-obsidian">India's No. 1 earbuds · Lifetime warranty</td>
+                      <td class="py-3 font-mono font-bold text-emerald-700">7.33:1 (PASS)</td>
+                      <td class="py-3"><span class="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-900 text-xs font-semibold">R-WAR-01 2-Yr Warranty</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="bg-porcelain rounded-3xl p-6 border border-slate-200/90 space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-obsidian text-base">Brand Palette Distance (R-VIS-01 · Limit ΔE ≤ 20)</h3>
+                <span id="p-palette-status" class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 font-mono text-xs font-semibold">0% on brand palette</span>
+              </div>
+
+              <div class="space-y-2.5 text-xs font-mono">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-alabaster border border-slate-200/80">
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-md shadow-inner" style="background:#D62828"></span>
+                    <span><strong>#D62828</strong> (58.5% area)</span>
+                  </div>
+                  <span class="text-rose-600 font-semibold">ΔE 93.7 → Cloud Grey #E9EEF4</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-alabaster border border-slate-200/80">
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-md shadow-inner" style="background:#FACF23"></span>
+                    <span><strong>#FACF23</strong> (28.4% area)</span>
+                  </div>
+                  <span class="text-rose-600 font-semibold">ΔE 82.0 → White #FFFFFF</span>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-slate-100">
+                <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-2">Approved ABC Electronics Brand Palette (Brand Book v3.0 p.11)</div>
+                <div class="flex flex-wrap gap-2 text-xs font-mono">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-alabaster border border-slate-200"><i class="w-3 h-3 rounded-full inline-block" style="background:#1F5FAE"></i>Brand Blue #1F5FAE</span>
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-alabaster border border-slate-200"><i class="w-3 h-3 rounded-full inline-block" style="background:#0D2A4A"></i>Navy #0D2A4A</span>
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-alabaster border border-slate-200"><i class="w-3 h-3 rounded-full inline-block" style="background:#4FA3E3"></i>Sky #4FA3E3</span>
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-alabaster border border-slate-200"><i class="w-3 h-3 rounded-full inline-block border" style="background:#FFFFFF"></i>White #FFFFFF</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: BRAND MEMORY & GUIDELINE-CHANGE IMPACT PREVIEW               -->
+    <!-- =================================================================== -->
+    <section id="view-memory" class="hidden space-y-6">
+      
+      <!-- Versioned Facts Bento Strip -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="velvet-card rounded-3xl p-6 border-t-4 border-t-emerald-700">
+          <span class="text-[11px] font-mono text-slate-400">R-PRC-01 · APPROVED PRICE</span>
+          <div class="font-serif text-4xl text-obsidian mt-1">₹10,000</div>
+          <div class="text-xs font-semibold text-slate-700 mt-1">SoundPods Pro Minimum Offer</div>
+          <div class="text-[11px] text-slate-400 mt-2">Source: Price List Oct 2026</div>
+        </div>
+        <div class="velvet-card rounded-3xl p-6 border-t-4 border-t-champagne">
+          <span class="text-[11px] font-mono text-slate-400">R-DSC-01 · MAX DISCOUNT</span>
+          <div class="font-serif text-4xl text-obsidian mt-1" id="bm-discount-val">20% OFF</div>
+          <div class="text-xs font-semibold text-slate-700 mt-1">Maximum Promotional Discount</div>
+          <div class="text-[11px] text-slate-400 mt-2">Source: Festive Offer Policy §2</div>
+        </div>
+        <div class="velvet-card rounded-3xl p-6 border-t-4 border-t-obsidian">
+          <span class="text-[11px] font-mono text-slate-400">R-WAR-01 · WARRANTY TERM</span>
+          <div class="font-serif text-4xl text-obsidian mt-1">2 Years</div>
+          <div class="text-xs font-semibold text-slate-700 mt-1">Standard Hardware Warranty</div>
+          <div class="text-[11px] text-slate-400 mt-2">Source: Brand Book v3.0 p.6</div>
+        </div>
+        <div class="velvet-card rounded-3xl p-6 border-t-4 border-t-slate-400">
+          <span class="text-[11px] font-mono text-slate-400">R-SPC-01 · BATTERY SPEC</span>
+          <div class="font-serif text-4xl text-obsidian mt-1">30 Hours</div>
+          <div class="text-xs font-semibold text-slate-700 mt-1">Total Playback Rating</div>
+          <div class="text-[11px] text-slate-400 mt-2">Source: Product Spec Sheet v2.1</div>
+        </div>
+      </div>
+
+      <!-- Impact Preview Simulator -->
+      <div class="velvet-card rounded-[2.25rem] p-6 sm:p-9 space-y-6">
+        <div class="pb-5 border-b border-slate-200/80">
+          <span class="px-3 py-1 rounded-full bg-obsidian text-champagneLight font-mono text-[11px] font-semibold">IMPROVEMENT 3 · IMPACT PREVIEW BEFORE SAVING</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-obsidian mt-2">Guideline-Change Impact Preview</h2>
+          <p class="text-sm text-slate-600 mt-1">Before committing a change to Brand Memory, BrandProof builds an in-memory snapshot and re-runs rules across all 8 approved posts to reveal what would newly break.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          <div class="lg:col-span-5 bg-porcelain rounded-3xl p-6 border border-slate-200/90 space-y-4">
+            <h3 class="font-bold text-obsidian text-base">Test a Proposed Rule Edit</h3>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Fact Parameter</label>
+              <select class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-semibold bg-alabaster">
+                <option>Maximum discount limit (%)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Proposed Maximum Discount (%)</label>
+              <input id="impact-input-val" type="number" value="10" min="0" max="50" oninput="runImpactSimulator()" class="w-full rounded-xl border-2 border-obsidian px-3.5 py-2.5 text-lg font-bold text-obsidian bg-porcelain">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Policy Citation</label>
+              <input type="text" value="Post-Diwali Price List Nov 2026" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs bg-porcelain">
+            </div>
+            <div class="flex flex-wrap gap-2.5 pt-2">
+              <button onclick="runImpactSimulator()" class="btn-luxury-glass px-5 py-2.5 rounded-full font-semibold text-xs flex items-center gap-2">
+                <i data-lucide="radar" class="w-4 h-4 text-emerald-700"></i>
+                <span>Preview Impact</span>
+              </button>
+              <button onclick="commitMemoryChange()" class="btn-luxury-obsidian px-5 py-2.5 rounded-full font-semibold text-xs">
+                Apply Change
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-obsidian text-white rounded-3xl p-6 space-y-4 border border-champagne/25">
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/10">
+              <div class="font-serif text-2xl text-champagneLight" id="impact-title">Impact preview: Set max_discount to 10%</div>
+              <span class="text-xs font-mono text-slate-400">8 approved items re-checked</span>
+            </div>
+
+            <div id="impact-summary-pills" class="flex flex-wrap gap-2 text-xs font-mono font-semibold">
+              <!-- Populated by JS -->
+            </div>
+
+            <div id="impact-results-list" class="space-y-2.5 max-h-[290px] overflow-y-auto pr-1">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: BENCHMARK (266), ARCHITECTURE & TEAM BUG HUNTERS             -->
+    <!-- =================================================================== -->
+    <section id="view-accuracy" class="hidden space-y-8">
+      
+      <!-- 4 Headline Benchmark KPIs -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="velvet-card rounded-3xl p-6">
+          <div class="font-serif text-4xl sm:text-5xl text-obsidian">266</div>
+          <div class="text-xs font-bold text-slate-700 mt-1">Labelled Benchmark Samples</div>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">148 EN · 47 HI · 71 Hinglish</div>
+        </div>
+        <div class="velvet-card rounded-3xl p-6">
+          <div class="font-serif text-4xl sm:text-5xl text-emerald-700">100%</div>
+          <div class="text-xs font-bold text-slate-700 mt-1">Rules Precision</div>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">100% on 253 rule-detectable</div>
+        </div>
+        <div class="velvet-card rounded-3xl p-6">
+          <div class="font-serif text-4xl sm:text-5xl text-obsidian">94.5%</div>
+          <div class="text-xs font-bold text-slate-700 mt-1">Rules Recall (F1 0.972)</div>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">98.7% Recall with Rules + AI</div>
+        </div>
+        <div class="velvet-card rounded-3xl p-6">
+          <div class="font-serif text-4xl sm:text-5xl text-amber-700">0</div>
+          <div class="text-xs font-bold text-slate-700 mt-1">False Alarms (Rules)</div>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">35/35 pytest + E2E passing</div>
+        </div>
+      </div>
+
+      <!-- Benchmark Table + Hard Subset Comparison -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 velvet-card rounded-[2rem] p-6 sm:p-7 space-y-4">
+          <h3 class="font-serif text-2xl text-obsidian">Accuracy by Language &amp; Claim Representation</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b border-slate-200 text-slate-400 font-mono text-[11px]">
+                  <th class="py-2.5">SUBSET</th>
+                  <th class="py-2.5">N</th>
+                  <th class="py-2.5">PRECISION</th>
+                  <th class="py-2.5">RECALL</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-medium">
+                <tr><td class="py-2.5 text-obsidian font-semibold">Language: English</td><td class="py-2.5 font-mono">148</td><td class="py-2.5 font-mono text-emerald-700">100%</td><td class="py-2.5 font-mono">91.6%</td></tr>
+                <tr><td class="py-2.5 text-obsidian font-semibold">Language: Hindi (हिंदी)</td><td class="py-2.5 font-mono">47</td><td class="py-2.5 font-mono text-emerald-700">100%</td><td class="py-2.5 font-mono">97.6%</td></tr>
+                <tr><td class="py-2.5 text-obsidian font-semibold">Language: Hinglish</td><td class="py-2.5 font-mono">71</td><td class="py-2.5 font-mono text-emerald-700">100%</td><td class="py-2.5 font-mono">98.4%</td></tr>
+                <tr><td class="py-2.5 text-obsidian font-semibold">Written in words ("saat hazaar")</td><td class="py-2.5 font-mono">122</td><td class="py-2.5 font-mono text-emerald-700">100%</td><td class="py-2.5 font-mono text-emerald-700">100%</td></tr>
+                <tr><td class="py-2.5 text-obsidian font-semibold">Written as digits ("₹7,000")</td><td class="py-2.5 font-mono">53</td><td class="py-2.5 font-mono text-emerald-700">100%</td><td class="py-2.5 font-mono text-emerald-700">100%</td></tr>
+                <tr><td class="py-2.5 text-obsidian font-semibold">Paraphrased claims</td><td class="py-2.5 font-mono">43</td><td class="py-2.5 font-mono text-emerald-700">100%</td><td class="py-2.5 font-mono">69.8%</td></tr>
+                <tr><td class="py-2.5 text-obsidian font-semibold">Meaning-based (AI-only layer)</td><td class="py-2.5 font-mono">13</td><td class="py-2.5 font-mono text-emerald-700">100%</td><td class="py-2.5 font-mono text-amber-700">0% → 92.3% (+AI)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-obsidian text-white rounded-[2rem] p-6 sm:p-7 shadow-2xl border border-champagne/25 flex flex-col justify-between space-y-5">
+          <div class="space-y-2">
+            <span class="px-3 py-1 rounded-full bg-white/10 text-champagneLight font-mono text-[11px] font-semibold">85 HARDEST SAMPLES · LIVE RUN (19 NOV)</span>
+            <h3 class="font-serif text-2xl text-white">Rules Only vs Rules + Gemini AI</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Tested on non-English, word-numbers, paraphrased &amp; meaning-only claims (e.g., <em>"a warranty that outlives your phone"</em>). Evidence verifier drops unquoted AI claims.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="bg-obsidianSoft p-4 rounded-2xl border border-white/10 space-y-2">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-slate-300">Rules Only</span>
+                <span class="font-mono text-emerald-400">F1: 0.908 · 0 False Alarms</span>
+              </div>
+              <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden"><div class="h-full bg-emerald-400 rounded-full" style="width: 83.1%"></div></div>
+              <div class="flex justify-between text-[11px] font-mono text-slate-400"><span>Precision: 100%</span><span>Recall: 83.1%</span></div>
+            </div>
+
+            <div class="bg-obsidianSoft p-4 rounded-2xl border border-champagne/40 space-y-2">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-champagneLight">Rules + Gemini AI + Verifier</span>
+                <span class="font-mono text-champagneLight">F1: 0.944 · +15.6% Recall</span>
+              </div>
+              <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-champagne to-emerald-400 rounded-full" style="width: 98.7%"></div></div>
+              <div class="flex justify-between text-[11px] font-mono text-slate-400"><span>Precision: 90.5%</span><span>Recall: 98.7%</span></div>
+            </div>
+          </div>
+
+          <div class="text-[11px] text-slate-400 border-t border-white/10 pt-3">
+            AI findings are always labelled and reviewed by a person—never auto-enforced.
+          </div>
+        </div>
+      </div>
+
+      <!-- 4-Layer System Architecture Strip -->
+      <div class="velvet-card rounded-[2rem] p-6 sm:p-8 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <h3 class="font-serif text-2xl sm:text-3xl text-obsidian">Four-Layer Production Architecture</h3>
+          <span class="text-xs font-mono text-slate-500">Rules first, AI second · Workspace scoped by org_id</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="tilt-stage bg-porcelain rounded-3xl p-5 border border-slate-200/90 space-y-3 shadow-sm" onmousemove="tiltElement(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center gap-3.5">
+              <!-- Bespoke Editorial Portrait Avatar -->
+              <svg viewBox="0 0 64 64" class="w-14 h-14 rounded-2xl shrink-0 shadow-md">
+                <rect width="64" height="64" rx="16" fill="#0E1218"/>
+                <circle cx="32" cy="24" r="10" fill="#FDE68A"/>
+                <path d="M14 56 C14 42 50 42 50 56" fill="#D4AF37"/>
+                <rect x="6" y="6" width="52" height="52" rx="13" fill="none" stroke="#D4AF37" stroke-opacity="0.45" stroke-width="1.5"/>
+              </svg>
+              <div>
+                <span class="px-2.5 py-0.5 rounded-full bg-obsidian text-champagneLight text-[10px] font-mono font-bold">TEAM LEADER</span>
+                <h3 class="font-bold text-obsidian text-lg mt-0.5">Ayush Kumar</h3>
+                <div class="font-mono text-[11px] text-emerald-700 font-semibold">AI &amp; Architecture</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">v3 architecture, Gemini AI layer (poster reading, Hindi-aware review, backup model, 25s cap), impact preview, Render + PostgreSQL deployment.</p>
+          </div>
+
+          <div class="tilt-stage bg-porcelain rounded-3xl p-5 border border-slate-200/90 space-y-3 shadow-sm" onmousemove="tiltElement(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center gap-3.5">
+              <svg viewBox="0 0 64 64" class="w-14 h-14 rounded-2xl shrink-0 shadow-md">
+                <rect width="64" height="64" rx="16" fill="#065F46"/>
+                <circle cx="32" cy="24" r="10" fill="#A7F3D0"/>
+                <path d="M14 56 C14 42 50 42 50 56" fill="#10B981"/>
+              </svg>
+              <div>
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold">BACKEND</span>
+                <h3 class="font-bold text-obsidian text-lg mt-0.5">Akanksha Mishra</h3>
+                <div class="font-mono text-[11px] text-slate-500">Security &amp; PostgreSQL</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">Accounts, scrypt sessions, role invites, workspace scoping, PostgreSQL/SQLite adapter, four-eyes rule &amp; idempotent actions.</p>
+          </div>
+
+          <div class="tilt-stage bg-porcelain rounded-3xl p-5 border border-slate-200/90 space-y-3 shadow-sm" onmousemove="tiltElement(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center gap-3.5">
+              <svg viewBox="0 0 64 64" class="w-14 h-14 rounded-2xl shrink-0 shadow-md">
+                <rect width="64" height="64" rx="16" fill="#1E293B"/>
+                <circle cx="32" cy="24" r="10" fill="#FDE68A"/>
+                <path d="M14 56 C14 42 50 42 50 56" fill="#38BDF8"/>
+              </svg>
+              <div>
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-mono font-bold">FRONTEND</span>
+                <h3 class="font-bold text-obsidian text-lg mt-0.5">Shiksha Rawat</h3>
+                <div class="font-mono text-[11px] text-slate-500">SPA &amp; Poster Overlay</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">Sign-in, team &amp; accuracy pages, poster box overlay, next-step banner, refresh-safe routing &amp; double-click protection.</p>
+          </div>
+
+          <div class="tilt-stage bg-porcelain rounded-3xl p-5 border border-slate-200/90 space-y-3 shadow-sm" onmousemove="tiltElement(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center gap-3.5">
+              <svg viewBox="0 0 64 64" class="w-14 h-14 rounded-2xl shrink-0 shadow-md">
+                <rect width="64" height="64" rx="16" fill="#311042"/>
+                <circle cx="32" cy="24" r="10" fill="#F5D0FE"/>
+                <path d="M14 56 C14 42 50 42 50 56" fill="#C084FC"/>
+              </svg>
+              <div>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-[10px] font-mono font-bold">UI/UX &amp; A11Y</span>
+                <h3 class="font-bold text-obsidian text-lg mt-0.5">Mahima Kumari</h3>
+                <div class="font-mono text-[11px] text-slate-500">WCAG &amp; User Flows</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">Demo guide, mobile header layout, empty states, per-line contrast rules &amp; WCAG accessibility wording.</p>
+          </div>
+
+          <div class="tilt-stage bg-porcelain rounded-3xl p-5 border border-slate-200/90 space-y-3 shadow-sm" onmousemove="tiltElement(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center gap-3.5">
+              <svg viewBox="0 0 64 64" class="w-14 h-14 rounded-2xl shrink-0 shadow-md">
+                <rect width="64" height="64" rx="16" fill="#0F172A"/>
+                <circle cx="32" cy="24" r="10" fill="#BAE6FD"/>
+                <path d="M14 56 C14 42 50 42 50 56" fill="#0284C7"/>
+              </svg>
+              <div>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-[10px] font-mono font-bold">IMAGES &amp; DEVOPS</span>
+                <h3 class="font-bold text-obsidian text-lg mt-0.5">Md Akil Akhtar</h3>
+                <div class="font-mono text-[11px] text-slate-500">Computer Vision &amp; Render</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">Logo template matching and per-box contrast in NumPy, sample posters, Render Blueprint &amp; database setup.</p>
+          </div>
+
+          <div class="tilt-stage bg-porcelain rounded-3xl p-5 border border-slate-200/90 space-y-3 shadow-sm" onmousemove="tiltElement(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center gap-3.5">
+              <svg viewBox="0 0 64 64" class="w-14 h-14 rounded-2xl shrink-0 shadow-md">
+                <rect width="64" height="64" rx="16" fill="#3B1D14"/>
+                <circle cx="32" cy="24" r="10" fill="#FED7AA"/>
+                <path d="M14 56 C14 42 50 42 50 56" fill="#EA580C"/>
+              </svg>
+              <div>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 text-[10px] font-mono font-bold">RESEARCH &amp; QA</span>
+                <h3 class="font-bold text-obsidian text-lg mt-0.5">Antra Priyadarshini</h3>
+                <div class="font-mono text-[11px] text-slate-500">266-Sample Benchmark</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">Hindi/Hinglish word lists, 266-sample benchmark, pytest &amp; Playwright runs, user testing, README &amp; documentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- OBSIDIAN EDITORIAL FOOTER                                             -->
+  <!-- ===================================================================== -->
+  <footer class="relative z-10 bg-obsidian text-slate-400 border-t border-champagne/20 py-10 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-xs">
+      <div class="flex flex-wrap items-center gap-2.5">
+        <span class="font-serif text-xl text-white">BrandProof <span class="italic text-emerald-400">AI</span> <span class="font-mono text-xs text-champagneLight">v3.1</span></span>
+        <span class="text-slate-600">·</span>
+        <span>Built by <strong class="text-white">Team Bug Hunters (IIT Patna)</strong> for the Inkloom AI Brand-Governance Problem Statement</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-5 font-medium text-slate-300">
+        <a href="https://brandproof-ai-ddlp.onrender.com/" target="_blank" class="hover:text-champagneLight transition">Live App (Render)</a>
+        <a href="https://brandproof-ai-ddlp.onrender.com/docs" target="_blank" class="hover:text-champagneLight transition">OpenAPI Docs</a>
+        <a href="https://github.com/sanjaykumarpathak640-png/brandproof-ai" target="_blank" class="hover:text-champagneLight transition">GitHub Source</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT ENGINE                                                     -->
+  <!-- ===================================================================== -->
+  <script>
+    lucide.createIcons();
+
+    const state = {
+      activeTab: 'overview',
+      role: 'Creator',
+      workflowStage: 'DRAFT', // DRAFT -> COMPLIANCE -> REVIEWER -> CERTIFIED
+      posterBoxesOn: true,
+      posterFixed: false,
+      maxDiscount: 20,
+      lastResult: null
+    };
+
+    const PRESETS = {
+      risky: {
+        title: "Risky AI Instagram Ad",
+        channel: "Instagram",
+        goal: "Promote SoundPods Pro festive offer",
+        text: "ABC Electronics – India's No. 1 Brand! Buy SoundPods Pro for just ₹7,000. Get 50% OFF. 100% guaranteed performance with lifetime warranty!! Hurry, limited time only!"
+      },
+      hinglish: {
+        title: "Hinglish WhatsApp Promo",
+        channel: "WhatsApp",
+        goal: "Drive Diwali sales for SoundPods Pro",
+        text: "Diwali Dhamaka! SoundPods Pro sirf saat hazaar rupaye mein, aadhe daam par! Saath mein aajeevan warranty. Jaldi karo, aakhri mauka!"
+      },
+      hindi: {
+        title: "हिंदी दिवाली विज्ञापन",
+        channel: "WhatsApp",
+        goal: "SoundPods Pro की दिवाली बिक्री बढ़ाना",
+        text: "दिवाली महासेल! SoundPods Pro सिर्फ सात हज़ार रुपये में, आधे दाम पर! साथ में आजीवन वारंटी। जल्दी करें, आखिरी मौका!"
+      },
+      outdated: {
+        title: "Outdated Launch Flyer",
+        channel: "Retail Standee",
+        goal: "Highlight SoundPods Pro value",
+        text: "Get SoundPods Pro at its launch price of ₹7,000 with 40 hours battery and lifetime warranty. T&C apply."
+      },
+      confidential: {
+        title: "Unannounced Q4 Teaser",
+        channel: "Email Campaign",
+        goal: "Tease upcoming launch",
+        text: "Exclusive sneak peek at Project Helios internal codename before November embargo! SoundPods Pro at ₹10,000. T&C apply."
+      },
+      clean: {
+        title: "Approved Retail Standee",
+        channel: "Retail Standee",
+        goal: "In-store festive awareness",
+        text: "SoundPods Pro – Smart Technology for Everyday Life. Enjoy 30 hours of playback and an approved 2-year warranty at ₹10,000. Now up to 20% off this Diwali. T&C apply."
+      }
+    };
+
+    const APPROVED_ITEMS = [
+      { title: "Diwali Instagram post", channel: "Instagram", discount: 20, snippet: "Get up to 20% OFF on SoundPods Pro this festive week. T&C apply." },
+      { title: "Festive email banner", channel: "Email", discount: 20, snippet: "Exclusive 20% OFF for ABC Electronics members. T&C apply." },
+      { title: "Last-chance SMS", channel: "SMS", discount: 15, snippet: "Flat 15% off on SoundPods Pro at ₹10,000 MRP. T&C apply." },
+      { title: "Flash sale push", channel: "App notification", discount: 20, snippet: "Unlock 20% OFF today with 2-year warranty. T&C apply." },
+      { title: "Weekend carousel ad", channel: "Instagram", discount: 18, snippet: "Save 18% on SoundPods Pro—30 hours playback. T&C apply." },
+      { title: "Brand awareness banner", channel: "Display", discount: 0, snippet: "SoundPods Pro — Smart Technology for Everyday Life. T&C apply." },
+      { title: "Student offer flyer", channel: "Print", discount: 10, snippet: "Students get 10% off SoundPods Pro. T&C apply." },
+      { title: "Newsletter header", channel: "Email", discount: 5, snippet: "Enjoy 5% welcome savings on ABC Electronics audio. T&C apply." }
+    ];
+
+    function showToast(msg, tone = 'obsidian') {
+      const box = document.getElementById('toast-container');
+      const el = document.createElement('div');
+      const style = tone === 'emerald'
+        ? 'bg-emerald-900 text-white border border-emerald-400/40'
+        : 'bg-obsidian text-champagneLight border border-champagne/40';
+      el.className = `${style} px-4 py-2.5 rounded-full shadow-2xl text-xs font-semibold flex items-center gap-2 transition-all duration-300 translate-y-2 opacity-0`;
+      el.innerHTML = `<span>${msg}</span>`;
+      box.appendChild(el);
+      requestAnimationFrame(() => el.classList.remove('translate-y-2', 'opacity-0'));
+      setTimeout(() => {
+        el.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => el.remove(), 300);
+      }, 2800);
+    }
+
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+      ['overview', 'sandbox', 'poster', 'memory', 'accuracy'].forEach(id => {
+        const view = document.getElementById(`view-${id}`);
+        if (view) view.classList.toggle('hidden', id !== tabId);
+      });
+
+      document.querySelectorAll('.nav-pill, .nav-pill-m').forEach(btn => {
+        const active = btn.getAttribute('data-tab') === tabId;
+        if (active) {
+          btn.classList.add('bg-obsidian', 'text-white', 'shadow-sm');
+          btn.classList.remove('text-slate-600');
+        } else {
+          btn.classList.remove('bg-obsidian', 'text-white', 'shadow-sm');
+          btn.classList.add('text-slate-600');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (tabId === 'sandbox') runSandboxAnalysis();
+      if (tabId === 'memory') runImpactSimulator();
+    }
+
+    // Deterministic Multilingual Rule Checker
+    function checkRules(text, maxDisc = state.maxDiscount) {
+      const findings = [];
+      let pricing = 0, warranty = 0, voice = 0;
+
+      // Price check (digits + EN/HI/Hinglish words)
+      const priceM = text.match(/(₹\s?7,?000|\b7,?000\b|saat\s+hazaar(\s+rupaye)?|सात\s+हज़ार(\s+रुपये)?)/i);
+      if (priceM) {
+        pricing += 35;
+        findings.push({
+          id: 'R-PRC-01',
+          severity: 'HIGH',
+          quote: priceM[0],
+          title: 'Price must match current approved price list',
+          detail: `Price "${priceM[0]}" conflicts with approved ₹10,000 price (Price List, Oct 2026).`,
+          fix: '₹10,000'
+        });
+      }
+
+      // Discount check
+      const discM = text.match(/(50\s*%\s*(off)?|aadhe\s+daam|half\s+price|आधे\s+दाम)/i);
+      if (discM) {
+        pricing += 25;
+        findings.push({
+          id: 'R-DSC-01',
+          severity: 'HIGH',
+          quote: discM[0],
+          title: `Discount exceeds ${maxDisc}% maximum limit`,
+          detail: `Offer "${discM[0]}" (50%) exceeds approved ${maxDisc}% limit (Festive Offer Policy §2).`,
+          fix: `up to ${maxDisc}% off`
+        });
+      }
+
+      // Warranty check
+      const warM = text.match(/(lifetime\s+warranty|aajeevan\s+warranty|आजीवन\s+वारंटी)/i);
+      if (warM) {
+        warranty += 25;
+        findings.push({
+          id: 'R-WAR-01',
+          severity: 'HIGH',
+          quote: warM[0],
+          title: 'Warranty must match approved 2-year term',
+          detail: `Claim "${warM[0]}" contradicts approved 2-year warranty (Brand Book v3.0 p.6).`,
+          fix: '2-year warranty'
+        });
+      }
+
+      // Confidential leak check
+      const confM = text.match(/(Project\s+Helios|internal\s+codename)/i);
+      if (confM) {
+        voice += 25;
+        findings.push({
+          id: 'R-CNF-01',
+          severity: 'HIGH',
+          quote: confM[0],
+          title: 'Confidential internal term detected (no auto-fix)',
+          detail: `Term "${confM[0]}" is restricted in Brand Memory confidential list.`,
+          fix: null
+        });
+      }
+
+      // Unverified superlative / guarantee
+      const clmM = text.match(/(India's\s+No\.?\s*1(\s+Brand)?|100%\s+guaranteed)/i);
+      if (clmM) {
+        voice += 10;
+        findings.push({
+          id: 'R-CLM-01',
+          severity: 'MEDIUM',
+          quote: clmM[0],
+          title: 'No rankings or absolute guarantees without proof',
+          detail: `Claim "${clmM[0]}" requires a cited study or award in Brand Memory (Legal §3).`,
+          fix: 'Smart Technology for Everyday Life'
+        });
+      }
+
+      // High-pressure urgency
+      const urgM = text.match(/(Jaldi\s+karo,?\s*aakhri\s+mauka!?|Hurry,?\s*limited\s+time\s+only!?|जल्दी\s+करें,?\s*आखिरी\s+मौका!?)/i);
+      if (urgM) {
+        voice += 4;
+        findings.push({
+          id: 'R-URG-01',
+          severity: 'REVIEW',
+          quote: urgM[0],
+          title: 'Avoid high-pressure urgency phrasing',
+          detail: `Urgency phrase "${urgM[0]}" flagged under Brand Voice Guidelines §4.`,
+          fix: 'Available this festive season.'
+        });
+      }
+
+      // Missing T&C disclaimer
+      const hasOffer = priceM || discM || /₹|%|off|दाam|दाम|रुपये/i.test(text);
+      const hasTc = /(T&C\s+apply|शर्तें\s+लागू)/i.test(text);
+      if (hasOffer && !hasTc) {
+        voice += 4;
+        findings.push({
+          id: 'R-DIS-01',
+          severity: 'REVIEW',
+          quote: '(Missing disclaimer)',
+          title: 'Promotional offers require "T&C apply"',
+          detail: 'Any copy mentioning price or discount must include "T&C apply" or "शर्तें लागू".',
+          appendTc: true
+        });
+      }
+
+      const score = Math.min(100, pricing + warranty + voice);
+      return { score, pricing, warranty, voice, findings };
+    }
+
+    // Overview Quick Caption Checker
+    function setQuickSample(key) {
+      document.getElementById('quick-caption-input').value = PRESETS[key].text;
+      runQuickCaptionCheck();
+    }
+
+    function runQuickCaptionCheck() {
+      const text = document.getElementById('quick-caption-input').value.trim();
+      const res = checkRules(text);
+      const out = document.getElementById('quick-caption-results');
+
+      if (res.findings.length === 0) {
+        out.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-mono text-xs font-bold">0 RISK · APPROVED FACTS</span>
+            <span class="text-[11px] font-mono text-slate-400">Precision 100%</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Matches ABC Electronics Brand Memory v1 (₹10,000 price, ≤20% discount, 2-year warranty, T&amp;C disclaimer present).
+          </p>
+        `;
+        return;
+      }
+
+      out.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-900 font-mono text-xs font-bold">${res.score} / 100 RISK · ${res.findings.length} FLAGS</span>
+          <span class="text-[11px] font-mono text-slate-400">Deterministic Match</span>
+        </div>
+        <div class="space-y-2 max-h-48 overflow-y-auto">
+          ${res.findings.map(f => `
+            <div class="p-3 rounded-xl bg-porcelain border border-slate-200/80 text-xs space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-mono font-bold ${f.severity === 'HIGH' ? 'text-rose-700' : 'text-amber-700'}">${f.severity} · ${f.id}</span>
+                <span class="font-mono text-[11px] bg-alabaster px-2 py-0.5 rounded border border-slate-200">${f.quote}</span>
+              </div>
+              <div class="text-slate-600">${f.detail}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function transferToFullSandbox() {
+      document.getElementById('editor-content').value = document.getElementById('quick-caption-input').value;
+      switchTab('sandbox');
+    }
+
+    // Full Sandbox Logic
+    function loadSandboxPreset(key) {
+      const p = PRESETS[key];
+      document.getElementById('editor-title').value = p.title;
+      document.getElementById('editor-channel').value = p.channel;
+      document.getElementById('editor-goal').value = p.goal;
+      document.getElementById('editor-content').value = p.text;
+      document.getElementById('purpose-guard-banner').classList.add('hidden');
+      document.getElementById('certificate-vault').classList.add('hidden');
+      state.workflowStage = 'DRAFT';
+      runSandboxAnalysis(true);
+    }
+
+    function runSandboxAnalysis(notify = false) {
+      const text = document.getElementById('editor-content').value;
+      document.getElementById('editor-char-count').textContent = `${text.length} / 20000`;
+
+      const res = checkRules(text);
+      state.lastResult = res;
+
+      // Circular SVG Gauge
+      const circle = document.getElementById('gauge-circle');
+      circle.style.strokeDashoffset = 264 - (res.score / 100) * 264;
+      circle.style.stroke = res.score >= 50 ? '#E11D48' : res.score > 0 ? '#D97706' : '#059669';
+
+      document.getElementById('gauge-number').textContent = res.score;
+      const tag = document.getElementById('gauge-tag');
+      if (res.score >= 50) {
+        tag.textContent = 'HIGH RISK';
+        tag.className = 'text-[9px] font-mono font-bold text-rose-600 mt-1';
+      } else if (res.score > 0) {
+        tag.textContent = 'REVIEW';
+        tag.className = 'text-[9px] font-mono font-bold text-amber-600 mt-1';
+      } else {
+        tag.textContent = 'CLEAR RISK';
+        tag.className = 'text-[9px] font-mono font-bold text-emerald-700 mt-1';
+      }
+
+      document.getElementById('score-pricing').textContent = `+${res.pricing}`;
+      document.getElementById('bar-pricing').style.width = `${Math.min(100, (res.pricing / 60) * 100)}%`;
+      document.getElementById('score-warranty').textContent = `+${res.warranty}`;
+      document.getElementById('bar-warranty').style.width = `${Math.min(100, (res.warranty / 25) * 100)}%`;
+      document.getElementById('score-voice').textContent = `+${res.voice}`;
+      document.getElementById('bar-voice').style.width = `${Math.min(100, (res.voice / 25) * 100)}%`;
+
+      const hi = res.findings.filter(f => f.severity === 'HIGH').length;
+      const md = res.findings.filter(f => f.severity === 'MEDIUM').length;
+      const rv = res.findings.filter(f => f.severity === 'REVIEW').length;
+      document.getElementById('gauge-counts').textContent = `${hi} HIGH · ${md} MED · ${rv} REV`;
+      document.getElementById('findings-total').textContent = res.findings.length;
+
+      // Highlighted Draft
+      let html = escapeHtml(text);
+      res.findings.forEach((f, idx) => {
+        if (!f.appendTc && f.quote) {
+          const q = escapeHtml(f.quote);
+          const cls = f.severity === 'HIGH' ? 'claim-flag' : 'claim-flag-med';
+          html = html.replace(q, `<span class="${cls}">${q} <sup>#${idx + 1}</sup></span>`);
+        }
+      });
+      if (res.findings.some(f => f.appendTc)) {
+        html += ` <span class="claim-flag-med">+ T&amp;C apply.</span>`;
+      }
+      document.getElementById('editor-highlighted-preview').innerHTML = html || '<span class="text-slate-400">Empty draft...</span>';
+
+      // Findings List
+      const container = document.getElementById('findings-container');
+      if (res.findings.length === 0) {
+        container.innerHTML = `
+          <div class="p-4 rounded-2xl bg-emerald-50/90 border border-emerald-200 text-xs text-emerald-950 flex items-center gap-3">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-700 shrink-0"></i>
+            <div><strong>No open issues in this version.</strong> Every claim aligns with ABC Electronics Brand Memory v1.</div>
+          </div>
+        `;
+      } else {
+        container.innerHTML = res.findings.map((f, i) => `
+          <div class="p-4 rounded-2xl bg-porcelain border border-slate-200/90 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded-full font-mono text-[10px] font-bold ${f.severity === 'HIGH' ? 'bg-rose-100 text-rose-800' : f.severity === 'MEDIUM' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-800'}">${f.severity}</span>
+                <span class="font-mono text-xs font-semibold text-slate-500">${f.id}</span>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400">#${i + 1}</span>
+            </div>
+            <div class="font-bold text-obsidian text-xs sm:text-sm">${f.title}</div>
+            <p class="text-xs text-slate-600">${f.detail}</p>
+          </div>
+        `).join('');
+      }
+
+      lucide.createIcons();
+      renderWorkflowControls();
+      if (notify) showToast(`BrandProof Check complete · Risk ${res.score}/100`);
+    }
+
+    function applySuggestedFixes() {
+      let text = document.getElementById('editor-content').value;
+      const res = checkRules(text);
+      if (res.findings.length === 0) {
+        showToast('Copy already complies with Brand Memory!');
+        return;
+      }
+
+      let fixedCount = 0;
+      res.findings.forEach(f => {
+        if (f.appendTc && !/(T&C apply|शर्तें लागू)/i.test(text)) {
+          text = text.trim() + ' T&C apply.';
+          fixedCount++;
+        } else if (f.quote && f.fix) {
+          text = text.replace(f.quote, f.fix);
+          fixedCount++;
+        }
+      });
+
+      document.getElementById('editor-content').value = text;
+      if (fixedCount > 0) {
+        document.getElementById('purpose-guard-banner').classList.remove('hidden');
+        showToast(`Applied ${fixedCount} fix(es) · Purpose Guard verified`, 'emerald');
+      } else {
+        showToast('Confidential terms have no auto-fix — remove manually.');
+      }
+      runSandboxAnalysis();
+    }
+
+    function setActiveRole(role) {
+      state.role = role;
+      document.querySelectorAll('.role-btn').forEach(btn => {
+        const active = btn.id === `role-pill-${role}`;
+        if (active) {
+          btn.classList.add('bg-obsidian', 'text-white', 'shadow-sm');
+          btn.classList.remove('text-slate-600');
+        } else {
+          btn.classList.remove('bg-obsidian', 'text-white', 'shadow-sm');
+          btn.classList.add('text-slate-600');
+        }
+      });
+      renderWorkflowControls();
+      showToast(`Acting as ${role}`);
+    }
+
+    function renderWorkflowControls() {
+      const stage = state.workflowStage;
+      const order = ['DRAFT', 'COMPLIANCE', 'REVIEWER', 'CERTIFIED'];
+      const curIdx = order.indexOf(stage);
+
+      [1, 2, 3, 4].forEach((n, idx) => {
+        const el = document.getElementById(`wf-step-${n}`);
+        const badge = el.querySelector('span');
+        if (idx <= curIdx) {
+          el.className = 'flex items-center gap-2 text-emerald-700';
+          badge.className = 'w-6 h-6 rounded-full bg-emerald-700 text-white font-mono text-[11px] flex items-center justify-center';
+        } else {
+          el.className = 'flex items-center gap-2 text-slate-400';
+          badge.className = 'w-6 h-6 rounded-full bg-slate-200 text-slate-600 font-mono text-[11px] flex items-center justify-center';
+        }
+      });
+
+      document.getElementById('wf-status-badge').textContent = stage;
+      document.getElementById('wf-card-title').textContent = `Actions — ${state.role}`;
+
+      const banner = document.getElementById('wf-next-banner');
+      const desc = document.getElementById('wf-card-desc');
+      const row = document.getElementById('wf-buttons-row');
+
+      if (stage === 'CERTIFIED') {
+        banner.textContent = 'Next step: Approved and certified. Proof Certificate #09 sealed.';
+        desc.textContent = 'Cryptographically sealed in the ABC Electronics workspace ledger.';
+        row.innerHTML = `<button onclick="loadSandboxPreset('hinglish')" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition">Start New Draft</button>`;
+        return;
+      }
+
+      if (stage === 'DRAFT') {
+        banner.textContent = 'Next step: Apply fixes if needed, then Submit as Creator.';
+        desc.textContent = 'Submit this version into the approval queue.';
+        row.innerHTML = `
+          <button onclick="advanceToSubmit()" class="btn-luxury-emerald px-6 py-3 rounded-full font-semibold text-xs sm:text-sm flex items-center gap-2">
+            <span>Submit this version</span>
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        `;
+      } else if (stage === 'COMPLIANCE') {
+        banner.textContent = 'Next step: Clear claims as Compliance.';
+        desc.textContent = 'High-severity issues require Compliance clearance before final Reviewer sign-off.';
+        row.innerHTML = `
+          <button onclick="setActiveRole('Compliance'); state.workflowStage='REVIEWER'; renderWorkflowControls(); showToast('Cleared by Compliance → Sent to Reviewer', 'emerald')" class="px-6 py-3 rounded-full bg-champagne text-obsidian font-bold text-xs sm:text-sm flex items-center gap-2 hover:brightness-105 transition">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            <span>Clear Claims as Compliance</span>
+          </button>
+        `;
+      } else if (stage === 'REVIEWER') {
+        banner.textContent = 'Next step: Approve as Reviewer to mint Proof Certificate.';
+        desc.textContent = 'Four-eyes rule verified: a separate Reviewer signs off to issue the SHA-256 Proof Certificate.';
+        row.innerHTML = `
+          <button onclick="setActiveRole('Reviewer'); state.workflowStage='CERTIFIED'; renderWorkflowControls(); document.getElementById('certificate-vault').classList.remove('hidden'); showToast('Approved — Proof Certificate #09 issued!', 'emerald')" class="btn-luxury-emerald px-6 py-3 rounded-full font-semibold text-xs sm:text-sm flex items-center gap-2">
+            <i data-lucide="award" class="w-4 h-4 text-champagneLight"></i>
+            <span>Approve &amp; Issue Proof Certificate</span>
+          </button>
+        `;
+      }
+      lucide.createIcons();
+    }
+
+    function advanceToSubmit() {
+      const hasHigh = state.lastResult && state.lastResult.findings.some(f => f.severity === 'HIGH');
+      state.workflowStage = hasHigh ? 'COMPLIANCE' : 'REVIEWER';
+      renderWorkflowControls();
+      showToast(hasHigh ? 'Submitted → Routed to Compliance first' : 'Submitted → Routed to Reviewer');
+    }
+
+    function copyCertificateHash() {
+      const temp = document.createElement('textarea');
+      temp.value = '829326a829f4c190e841b77d30658b9a1096ab1a15e76af5';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      temp.remove();
+      showToast('SHA-256 Certificate Hash copied to clipboard', 'emerald');
+    }
+
+    // Poster Vision Controls
+    function togglePosterBoxes() {
+      state.posterBoxesOn = !state.posterBoxesOn;
+      document.querySelectorAll('.p-bbox').forEach(el => el.classList.toggle('hidden', !state.posterBoxesOn));
+      document.getElementById('btn-poster-boxes').innerHTML = `
+        <i data-lucide="scan" class="w-4 h-4 text-emerald-700"></i>
+        <span>Bounding Boxes: ${state.posterBoxesOn ? 'ON' : 'OFF'}</span>
+      `;
+      lucide.createIcons();
+    }
+
+    function togglePosterState() {
+      state.posterFixed = !state.posterFixed;
+      const art = document.getElementById('poster-artwork');
+      const l1 = document.getElementById('p-line-1');
+      const l2 = document.getElementById('p-line-2');
+      const l3 = document.getElementById('p-line-3');
+      const l4 = document.getElementById('p-line-4');
+      const logo = document.getElementById('p-logo-box');
+      const verdict = document.getElementById('p-logo-verdict');
+      const pal = document.getElementById('p-palette-status');
+      const btn = document.getElementById('btn-poster-toggle');
+
+      if (state.posterFixed) {
+        art.style.background = 'linear-gradient(180deg, #0D2A4A 0%, #1F5FAE 64%, #E9EEF4 64%, #FFFFFF 100%)';
+        l1.style.color = '#FFFFFF';
+        l2.textContent = 'UP TO 20% OFF';
+        l3.textContent = 'SoundPods Pro – ₹10,000';
+        l4.textContent = '30h Playback · 2-Year Warranty · T&C apply';
+        logo.className = 'w-24 h-24 rounded-full bg-white flex flex-col items-center justify-center text-center p-2 border-2 border-emerald-400 shadow-lg';
+        logo.innerHTML = `<i data-lucide="shield-check" class="w-7 h-7 text-blue-800"></i><span class="text-[9px] font-extrabold text-obsidian mt-0.5">ABC LOGO</span>`;
+        verdict.className = 'px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-semibold';
+        verdict.textContent = '✓ LOGO VERIFIED (0.94 ≥ 0.82)';
+        pal.className = 'px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-mono text-xs font-semibold';
+        pal.textContent = '98.4% on brand palette';
+        btn.innerHTML = `<i data-lucide="rotate-ccw" class="w-4 h-4"></i><span>Revert to Off-Brand Poster</span>`;
+        showToast('On-Brand Poster verified: Contrast 8.4:1 & Logo matched!', 'emerald');
+      } else {
+        art.style.background = 'linear-gradient(180deg, #D62828 0%, #D62828 64%, #FACF23 64%, #FACF23 100%)';
+        l1.style.color = '#F472B6';
+        l2.textContent = '50% OFF';
+        l3.textContent = 'SoundPods Pro – just ₹7,000';
+        l4.textContent = "India's No. 1 earbuds · Lifetime warranty";
+        logo.className = 'w-24 h-24 rounded-full bg-obsidian flex flex-col items-center justify-center text-center p-2 border-2 border-dashed border-rose-400';
+        logo.innerHTML = `<span class="text-[10px] font-mono text-rose-300 font-bold">LOGO MISSING</span>`;
+        verdict.className = 'px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 font-mono font-semibold';
+        verdict.textContent = '✕ LOGO NOT FOUND (0.19 < 0.82)';
+        pal.className = 'px-3 py-1 rounded-full bg-rose-100 text-rose-800 font-mono text-xs font-semibold';
+        pal.textContent = '0% on brand palette';
+        btn.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4"></i><span>Toggle On-Brand Poster</span>`;
+      }
+      lucide.createIcons();
+    }
+
+    // Impact Preview Simulator
+    function runImpactSimulator() {
+      const val = parseInt(document.getElementById('impact-input-val').value || '10', 10);
+      document.getElementById('impact-title').textContent = `Impact preview: Set max_discount to ${val}%`;
+
+      const flagged = APPROVED_ITEMS.filter(i => i.discount > val);
+      const ok = APPROVED_ITEMS.filter(i => i.discount <= val);
+
+      document.getElementById('impact-summary-pills').innerHTML = `
+        <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40">${flagged.length} WOULD NEWLY BE FLAGGED</span>
+        <span class="px-3 py-1 rounded-full bg-white/10 text-slate-300">0 NO LONGER FLAGGED</span>
+        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300">${ok.length} UNCHANGED</span>
+      `;
+
+      const list = document.getElementById('impact-results-list');
+      if (flagged.length === 0) {
+        list.innerHTML = `<div class="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-500/30 text-xs text-emerald-300">Zero approved posts would break at a ${val}% maximum discount limit.</div>`;
+        return;
+      }
+
+      list.innerHTML = flagged.map(item => `
+        <div class="p-3.5 rounded-2xl bg-obsidianSoft border border-rose-500/30 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-white text-xs sm:text-sm">${item.title} <span class="text-slate-400 font-normal">(${item.channel})</span></span>
+            <span class="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-mono text-[10px] font-bold">HIGH · R-DSC-01</span>
+          </div>
+          <p class="text-xs text-slate-300">Discount of <strong>${item.discount}%</strong> in "${item.snippet}" exceeds proposed maximum of <strong>${val}%</strong>.</p>
+        </div>
+      `).join('');
+    }
+
+    function commitMemoryChange() {
+      const val = parseInt(document.getElementById('impact-input-val').value || '10', 10);
+      state.maxDiscount = val;
+      document.getElementById('bm-discount-val').textContent = `${val}% OFF`;
+      showToast(`Brand Memory updated: Max discount is now ${val}%`, 'emerald');
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+    }
+
+    // 3D Interactive Perspective Tilt
+    function tiltElement(e, el) {
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      el.style.transform = `perspective(1000px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateY(-2px)`;
+    }
+    function resetTilt(el) {
+      el.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)';
+    }
+
+    // Scroll Reveal & Animated Numeric Counters
+    function initMotionObservers() {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+
+      document.querySelectorAll('.count-up').forEach(el => {
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 32));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target;
+            clearInterval(timer);
+          } else {
+            el.textContent = current;
+          }
+        }, 28);
+      });
+    }
+
+    // Continuous 60fps Ambient Silk Waves & Governance Constellation Network
+    function initAmbientBackground() {
+      const canvas = document.getElementById('ambient-governance-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = 0;
+      let height = 0;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      const pointer = { x: -9999, y: -9999, active: false };
+      window.addEventListener('mousemove', (e) => {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        pointer.active = true;
+      }, { passive: true });
+      window.addEventListener('mouseleave', () => {
+        pointer.active = false;
+      });
+
+      let nodes = [];
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const targetCount = Math.max(26, Math.min(58, Math.floor((width * height) / 26000)));
+        if (nodes.length === 0) {
+          for (let i = 0; i < targetCount; i++) {
+            const isGold = i % 3 !== 0;
+            nodes.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              vx: (Math.random() - 0.5) * 0.34,
+              vy: (Math.random() - 0.5) * 0.34,
+              r: 1.5 + Math.random() * 1.9,
+              phase: Math.random() * Math.PI * 2,
+              isGold
+            });
+          }
+        }
+      }
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+
+      let t = 0;
+      function drawFrame() {
+        t += 0.008;
+        ctx.clearRect(0, 0, width, height);
+
+        // 1. Subtle drifting golden & emerald silk ribbons
+        const waves = [
+          { yRatio: 0.26, amp: 34, freq: 0.0022, speed: 1.0, color: 'rgba(212, 175, 55, 0.13)' },
+          { yRatio: 0.54, amp: 42, freq: 0.0017, speed: -0.75, color: 'rgba(16, 185, 129, 0.11)' },
+          { yRatio: 0.78, amp: 28, freq: 0.0026, speed: 0.6, color: 'rgba(212, 175, 55, 0.09)' }
+        ];
+
+        waves.forEach((w) => {
+          ctx.beginPath();
+          const baseY = height * w.yRatio;
+          for (let x = -20; x <= width + 20; x += 28) {
+            const y = baseY +
+              Math.sin(x * w.freq + t * w.speed) * w.amp +
+              Math.cos(x * w.freq * 0.55 - t * w.speed * 0.8) * (w.amp * 0.45);
+            if (x === -20) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = w.color;
+          ctx.lineWidth = 1.4;
+          ctx.stroke();
+        });
+
+        // 2. Update & draw governance constellation nodes
+        const maxDist = 155;
+        for (let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+          n.x += n.vx;
+          n.y += n.vy;
+
+          if (n.x < -30) n.x = width + 30;
+          if (n.x > width + 30) n.x = -30;
+          if (n.y < -30) n.y = height + 30;
+          if (n.y > height + 30) n.y = -30;
+
+          // Gentle cursor repulsion/parallax
+          if (pointer.active) {
+            const dx = n.x - pointer.x;
+            const dy = n.y - pointer.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist > 1 && dist < 140) {
+              const push = (1 - dist / 140) * 0.35;
+              n.x += (dx / dist) * push;
+              n.y += (dy / dist) * push;
+            }
+          }
+
+          // Connect nearby nodes with gossamer hairlines
+          for (let j = i + 1; j < nodes.length; j++) {
+            const m = nodes[j];
+            const dx = n.x - m.x;
+            const dy = n.y - m.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < maxDist) {
+              const alpha = (1 - dist / maxDist) * 0.16;
+              ctx.beginPath();
+              ctx.moveTo(n.x, n.y);
+              ctx.lineTo(m.x, m.y);
+              ctx.strokeStyle = (n.isGold && m.isGold)
+                ? `rgba(212, 175, 55, ${alpha.toFixed(3)})`
+                : `rgba(16, 185, 129, ${(alpha * 0.9).toFixed(3)})`;
+              ctx.lineWidth = 0.85;
+              ctx.stroke();
+            }
+          }
+
+          // Connect gently to pointer when nearby
+          if (pointer.active) {
+            const pdx = n.x - pointer.x;
+            const pdy = n.y - pointer.y;
+            const pdist = Math.hypot(pdx, pdy);
+            if (pdist < 175) {
+              const pAlpha = (1 - pdist / 175) * 0.24;
+              ctx.beginPath();
+              ctx.moveTo(n.x, n.y);
+              ctx.lineTo(pointer.x, pointer.y);
+              ctx.strokeStyle = `rgba(212, 175, 55, ${pAlpha.toFixed(3)})`;
+              ctx.lineWidth = 0.9;
+              ctx.stroke();
+            }
+          }
+
+          // Pulsing node core & soft halo
+          const pulse = 0.65 + 0.35 * Math.sin(t * 2.4 + n.phase);
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r * 2.6, 0, Math.PI * 2);
+          ctx.fillStyle = n.isGold
+            ? `rgba(212, 175, 55, ${(0.08 * pulse).toFixed(3)})`
+            : `rgba(16, 185, 129, ${(0.08 * pulse).toFixed(3)})`;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = n.isGold
+            ? `rgba(180, 138, 28, ${(0.42 * pulse).toFixed(3)})`
+            : `rgba(6, 95, 70, ${(0.38 * pulse).toFixed(3)})`;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(drawFrame);
+      }
+
+      requestAnimationFrame(drawFrame);
+    }
+
+    window.onload = () => {
+      initAmbientBackground();
+      runQuickCaptionCheck();
+      runSandboxAnalysis();
+      runImpactSimulator();
+      initMotionObservers();
+    };
+  </script>
+</body>
+</html>
